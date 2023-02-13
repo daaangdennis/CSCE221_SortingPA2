@@ -49,7 +49,20 @@ namespace sort {
 
 	template<typename RandomIter, typename Comparator = less_for_iter<RandomIter>>
 	void insertion(RandomIter begin, RandomIter end, Comparator comp = Comparator{}) {
-		/*TODO*/
+		
+		if((end-begin) > 0)
+		{
+			for(auto indexOne = begin+1; indexOne < end; indexOne++)
+			{
+				RandomIter temp = indexOne;
+				RandomIter current = indexOne;
+				for(; (current > begin) && comp(*current, *(current-1)); current--)
+				{
+					swap(*current,*(current-1));
+				}
+
+			}
+		}
 	}
 
 	template<typename RandomIter, typename Comparator = less_for_iter<RandomIter>>
