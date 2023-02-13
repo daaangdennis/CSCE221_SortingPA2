@@ -37,11 +37,39 @@ namespace sort {
 		using pointer         = typename _it::pointer;
 
 		// TODO
+		difference_type diff = end-begin;
+		if(diff > 0)
+		{
+			std::cout << "True" << std::endl;
+		}
+		
+		
+
 	}
 
 	template<typename RandomIter, typename Comparator = less_for_iter<RandomIter>>
-	void insertion(RandomIter begin, RandomIter end, Comparator comp = Comparator{}) { /* TODO */ }
+	void insertion(RandomIter begin, RandomIter end, Comparator comp = Comparator{}) {
+		/*TODO*/
+	}
 
 	template<typename RandomIter, typename Comparator = less_for_iter<RandomIter>>
-	void selection(RandomIter begin, RandomIter end, Comparator comp = Comparator{}) { /* TODO */ }
+	void selection(RandomIter begin, RandomIter end, Comparator comp = Comparator{}) {
+		
+		if((end-begin) > 0)
+		{			
+			RandomIter smallest;
+			for(auto indexOne = begin; indexOne < end; indexOne++)
+			{
+				smallest = indexOne;
+				for(auto indexTwo = indexOne + 1; indexTwo < end; indexTwo++)
+				{
+					if(comp(*indexTwo,*smallest))
+					{
+						smallest = indexTwo;
+					}
+				}
+				swap(*indexOne,*smallest);
+			}
+		}
+	}
 }
