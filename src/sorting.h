@@ -30,19 +30,30 @@ namespace sort {
 		// Random access iterators have the same traits you defined in the Vector class
 		// For instance, difference_type represents an iterator difference
 		// You may delete the types you don't use to remove the compiler warnings
-		using _it             = std::iterator_traits<RandomIter>;
+		/*using _it             = std::iterator_traits<RandomIter>;
 		using difference_type = typename _it::difference_type;
 		using value_type      = typename _it::value_type;
 		using reference       = typename _it::reference;
-		using pointer         = typename _it::pointer;
+		using pointer         = typename _it::pointer;*/
 
-		// TODO
-		difference_type diff = end-begin;
-		if(diff > 0)
-		{
-			std::cout << "True" << std::endl;
-		}
 		
+		if((end-begin) > 0)
+		{
+
+			for(auto indexOne = begin+1; indexOne < end; indexOne++)
+			{
+				bool cont = false;
+				for(auto indexTwo = begin; indexTwo < end-(indexOne-begin); indexTwo++)
+				{
+					if(comp(*(indexTwo+1),*indexTwo))
+					{
+						swap(*(indexTwo+1),*indexTwo);
+						cont = true;
+					}
+				}
+				if(!cont){break;}
+			}
+		}
 		
 
 	}
@@ -54,13 +65,11 @@ namespace sort {
 		{
 			for(auto indexOne = begin+1; indexOne < end; indexOne++)
 			{
-				RandomIter temp = indexOne;
 				RandomIter current = indexOne;
 				for(; (current > begin) && comp(*current, *(current-1)); current--)
 				{
 					swap(*current,*(current-1));
 				}
-
 			}
 		}
 	}
